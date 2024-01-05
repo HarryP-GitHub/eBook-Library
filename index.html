@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>eBook Library</title>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
@@ -17,6 +19,7 @@
       <div class="search-section">
         <h2>Search for Books</h2>
         <input id="book-search" type="text" placeholder="search">
+        <button type="button" id="submit-search">Find</button>
         <h4>Results</h4>
         <div id="search-results">
         <!-- Search Results Here-->
@@ -26,16 +29,18 @@
           <h2>My Library</h2>
           <div id="book-library">
               <!-- User's Library Here-->
+              <!-- unable to implement as we should not use OAUth -->
           </div>
       </div>
     </div>
     <!-- Will probably just do another html page for the reader page -->
     <!-- Just not sure if the music will continue between main page and reader page-->
-    <div id="reader-page" class="hide">
+    <div id="reader-page" class="_hide">
       <button id="back-button">Back to Main Page</button>
       <div class="book-reader" id="book-reader">
         <h2>Reader</h2>
-          <!-- Book Reader Here -->
+        <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
+        <!-- Book Reader Here -->
       </div>
     </div>
 
@@ -43,6 +48,7 @@
         <!-- Music Player here -->
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 </html>

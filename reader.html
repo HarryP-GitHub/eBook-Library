@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eBook Library</title>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>eBook Library</h1>
+  </header>
+  <div class="readerpage-container">
+    <div class="left-container">
+      <button id="back-button">Back to Main Page</button>
+        <!-- Search Results + Map go here-->
+        <div id="results">
+          <h2>Results</h2>
+          <div id="search-results">
+            <!-- Results generate here-->
+            <p>results</p>
+            <li>list</li>
+          </div>
+        </div>
+        <div id="map">
+          <!-- Map generates here-->
+          <p>map</p>
+        </div>
+    </div>
+    <div class="right-container">
+      <!-- Reader goes here-->
+      <div id="reader-page" class="reader-page">
+        <div class="book-reader" id="book-reader">
+          <h2>Reader</h2>
+          <h3>Example Book Title</h3> 
+          <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
+            <!-- insert book title in h3-->
+            <!-- Book Reader Here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/reader-script.js"></script>
+</body>
+</html>

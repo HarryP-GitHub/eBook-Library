@@ -119,6 +119,7 @@ let loadBook = function(){
     viewer.load(bookID, bookNotFound, bookFound);
 }
 let getVolume = function (url) {
+
     fetch(url).then(function (response) {
         if (response.status === 200) {
         }
@@ -126,7 +127,6 @@ let getVolume = function (url) {
     })
         .then(function (response) {
             if (response) {
-
                 let list = $('<ul>');
                 for (var i = 0; i < response.items.length; i++) {
                     let item = response.items[i];
@@ -198,6 +198,11 @@ let handleSearchSubmit = function (event) {
     event.preventDefault();
     queryBook();
 }
+
+//Button to get back to main page
+//document.getElementById("back-button").addEventListener('click', function() {
+//    window.location.href = './index.html';
+//});
 
 submitSearchEl.on('click', handleSearchSubmit);
 searchResults.on('click', '.bookLink', handleLoadBook);

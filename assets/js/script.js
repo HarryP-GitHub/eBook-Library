@@ -1,6 +1,8 @@
 //let userQuery = 'harry potter';
 // let userQuery = 'Mark';
 //let subsetQuery = 'fiction';
+const bookList = 'bookList';
+let readerUrl = './reader.html';
 let dataBookID = 'data-bookID';
 let bookLink = 'bookLink';
 let subsetQuery = 'art';
@@ -89,35 +91,34 @@ let queryBook = function () {
 function alertNotFound() {
     // alert("could not embed the book!");
 }
-let getBookID = function (item) {
-    for (let i = 0; i < item.volumeInfo.industryIdentifiers.length; i++) {
-        let ident = item.volumeInfo.industryIdentifiers[i];
-        if (ident.type == 'ISBN_10' || ident.type == 'ISBN_13') {
-            return `ISBN:${ident.identifier}`;
-        }
-    }
-}
-let bookID = 'ISBN:9780596805524';
-let handleLoadBook = function(event){
-    let anchor = $(event.currentTarget);
-    bookID = anchor.attr(dataBookID);
-    //initialize(bookID);
-    loadBook();
-    //let viewerCanvas = $('<div>');
-    //bookReader.append(viewerCanvas);
-    //initialize(isbn, alertNotFound);
-}
-let loadBook = function(){
-    // let viewerCanvas = $('#viewerCanvas');
-    // var viewer = new google.books.DefaultViewer(viewerCanvas);
-    // let viewerCanvas = $('<div>');
-    // bookReader.append(viewerCanvas);
-     var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'), {
-    //    var viewer = new google.books.DefaultViewer(viewerCanvas, {
-            showLinkChrome: false
-    });
-    viewer.load(bookID, bookNotFound, bookFound);
-}
+// let getBookID = function (item) {
+//     for (let i = 0; i < item.volumeInfo.industryIdentifiers.length; i++) {
+//         let ident = item.volumeInfo.industryIdentifiers[i];
+//         if (ident.type == 'ISBN_10' || ident.type == 'ISBN_13') {
+//             return `ISBN:${ident.identifier}`;
+//         }
+//     }
+// }
+// let handleLoadBook = function(event){
+//     let anchor = $(event.currentTarget);
+//     bookID = anchor.attr(dataBookID);
+//     //initialize(bookID);
+//     loadBook();
+//     //let viewerCanvas = $('<div>');
+//     //bookReader.append(viewerCanvas);
+//     //initialize(isbn, alertNotFound);
+// }
+// let loadBook = function(){
+//     // let viewerCanvas = $('#viewerCanvas');
+//     // var viewer = new google.books.DefaultViewer(viewerCanvas);
+//     // let viewerCanvas = $('<div>');
+//     // bookReader.append(viewerCanvas);
+//      var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'), {
+//     //    var viewer = new google.books.DefaultViewer(viewerCanvas, {
+//             showLinkChrome: false
+//     });
+//     viewer.load(bookID, bookNotFound, bookFound);
+// }
 let getVolume = function (url) {
 
     fetch(url).then(function (response) {
@@ -127,34 +128,40 @@ let getVolume = function (url) {
     })
         .then(function (response) {
             if (response) {
-                let list = $('<ul>');
-                for (var i = 0; i < response.items.length; i++) {
-                    let item = response.items[i];
-                    //let searchResult = $('<button>');
-                    let searchResult = $('<li>');
-                    let searchResultAnchor = $('<a>');
-                    searchResultAnchor.attr(dataBookID, getBookID(item));
-                    searchResultAnchor.attr('href', '#');
-                    searchResultAnchor.addClass(bookLink);
-                    searchResultAnchor.text(item.volumeInfo.title);
-                    searchResult.append(searchResultAnchor);
-                    // searchResult.addClass('link');
-                    // searchResult.attr(bookID, getBookID(item));
-                    // searchResult.text(item.volumeInfo.title);
-                    list.append(searchResult);
-                    // for (let j = 0; j < item.volumeInfo.industryIdentifiers.length; j++) {
-                    //     let ident = item.volumeInfo.industryIdentifiers[j];
-                    //     // if (ident.type == 'ISBN_10')
-                    //     if (ident.type == 'ISBN_10' || ident.type == 'ISBN_13') {
-                    //         let isbn = `ISBN:${ident.identifier}`;
-                    //         initialize(isbn, alertNotFound);
-                    //         break;
-                    //     }
-                    // }
-                    // break;
-                    //console.log(item.volumeInfo.title);
-                }
-                searchResults.append(list);
+                // let list = $('<ul>');
+                // if (!searchResults){
+                //     return;
+                // }
+                // for (var i = 0; i < response.items.length; i++) {
+                //     let item = response.items[i];
+                //     //let searchResult = $('<button>');
+                //     let searchResult = $('<li>');
+                //     let searchResultAnchor = $('<a>');
+                //     searchResultAnchor.attr(dataBookID, getBookID(item));
+                //     searchResultAnchor.attr('href', '#');
+                //     searchResultAnchor.addClass(bookLink);
+                //     searchResultAnchor.text(item.volumeInfo.title);
+                //     searchResult.append(searchResultAnchor);
+                //     // searchResult.addClass('link');
+                //     // searchResult.attr(bookID, getBookID(item));
+                //     // searchResult.text(item.volumeInfo.title);
+                //     list.append(searchResult);
+                //     // for (let j = 0; j < item.volumeInfo.industryIdentifiers.length; j++) {
+                //     //     let ident = item.volumeInfo.industryIdentifiers[j];
+                //     //     // if (ident.type == 'ISBN_10')
+                //     //     if (ident.type == 'ISBN_10' || ident.type == 'ISBN_13') {
+                //     //         let isbn = `ISBN:${ident.identifier}`;
+                //     //         initialize(isbn, alertNotFound);
+                //     //         break;
+                //     //     }
+                //     // }
+                //     // break;
+                //     //console.log(item.volumeInfo.title);
+                // }
+                // searchResults.append(list);
+                sessionStorage.setItem(bookList, JSON.stringify(response.items));
+                window.location.href = readerUrl;
+                // window.location.replace(readerUrl);
             }
         });
 
@@ -165,11 +172,11 @@ let getVolume = function (url) {
 //google.books.load();
 // var gbsWidget = document.getElementById('GoogleBooksPreview');
 
-function bookFound() {
+// function bookFound() {
     
-}
-function bookNotFound() {
-}
+// }
+// function bookNotFound() {
+// }
 // function initialize1() {
 //     // gbsWidget.className = "";
 //     var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'), {
@@ -205,7 +212,7 @@ let handleSearchSubmit = function (event) {
 //});
 
 submitSearchEl.on('click', handleSearchSubmit);
-searchResults.on('click', '.bookLink', handleLoadBook);
+// searchResults.on('click', '.bookLink', handleLoadBook);
 // google.books.setOnLoadCallback(initialize);
 
 //volumeInfo

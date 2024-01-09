@@ -4,19 +4,17 @@
     align-items: center;
 }
  :root {
- --hstyle: #195feb; 
- --bstyle: #4880f0; 
- --sstyle: #dadada; 
- --mstyle: #f0a824;
- --btnhover: #919191;
-}
-/*
-html, body {
-    min-height: 100%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: var(--bstyle);
+ --headerstyle: #1762f9; 
+ --bodystyle: #3d78ee; 
+ --sectionstyle: #ececec; 
 }
 
+html, body {
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: var(--bodystyle);
+}
+/*
 header {
     background-color: var(--hstyle);
     color: white;

@@ -1,4 +1,6 @@
-let googleMapsAPiKey = 'AIzaSyCJAxT2quBXtK4M4hPpnyXky6kYWPlaRO8';
+//let googleMapsAPiKey = 'AIzaSyCJAxT2quBXtK4M4hPpnyXky6kYWPlaRO8';
+//let googleMapsAPiKey1 = 'AIzaSyA7VIIMZ_ae_b4biBwCkhHvXDQLCxGQ0RM';
+let googleMapsAPiKey = 'AIzaSyBRstUHLjo49Sig-AjKPCFR_EKfiq29W2M';
 let listItemHoverBackground = '#919191';
 let listItemRegularBackground = '#dadada';
 let bookID = '';

@@ -1,6 +1,4 @@
-//let userQuery = 'harry potter';
-// let userQuery = 'Mark';
-//let subsetQuery = 'fiction';
+// variables section
 const bookList = 'bookList';
 let readerUrl = './reader.html';
 let dataBookID = 'data-bookID';
@@ -10,6 +8,19 @@ let submitSearchEl = $('#submit-search');
 let searchTextEl = $('#book-search');
 let searchResults = $('#search-results');
 let bookReader = $('#book-reader');
+let selectCategoryEl = $('#category');
+let selectOptionEl = $('#option');
+let searchOption = '';
+let bookQuery = 'https://www.googleapis.com/books/v1/volumes?q=';
+
+let optionList = [
+    'intitle',
+    'inauthor',
+    'inpublisher',
+    'lccn',
+    'oclc',
+];
+
 let categoryList = [
     'ANTIQUES & COLLECTIBLES',
     'ARCHITECTURE',
@@ -65,60 +76,35 @@ let categoryList = [
     'YOUNG ADULT FICTION',
     'YOUNG ADULT NONFICTION',
 ];
-let searchOption = '';//'inauthor';
-// let volumeQuery = `https://www.googleapis.com/books/v1/volumes?q=${userQuery}`;
-let bookQuery = 'https://www.googleapis.com/books/v1/volumes?q=';
+
+
+//methods section
 let queryBook = function () {
     searchResults.empty();
     let searchText = searchTextEl.val();
+    subsetQuery = selectCategoryEl.find(":selected").text();
+    if (subsetQuery.startsWith('Choose a Category')) {
+        subsetQuery = '';
+    }
 
-    subsetQuery = '';// categoryList[4];//will get from search options
+    searchOption = selectOptionEl.find(":selected").text();
+    if (searchOption.startsWith('Choose an Option')) {
+        searchOption = '';
+    }
+
     if (searchText || subsetQuery) {
         let query = bookQuery;
         if (searchText) {
             query += searchOption ? `${searchOption}:"${searchText}"` : searchText;
         }
         if (subsetQuery) {
-            query += searchText ? `&subject:${subsetQuery}` : `subject:${subsetQuery}`;
+            query += searchText ? `+subject:${subsetQuery}` : `subject:${subsetQuery}`;
         }
 
-        //query += '&key=AIzaSyBRstUHLjo49Sig-AjKPCFR_EKfiq29W2M';
-        //query = 'https://www.googleapis.com/books/v1/myLibrary/bookshelves?key=AIzaSyBRstUHLjo49Sig-AjKPCFR_EKfiq29W2M';
-        //query = 'https://www.googleapis.com/books/v1/volumes/volumeId?key=AIzaSyBRstUHLjo49Sig-AjKPCFR_EKfiq29W2M';
         getVolume(query);
     }
 }
-function alertNotFound() {
-    // alert("could not embed the book!");
-}
-// let getBookID = function (item) {
-//     for (let i = 0; i < item.volumeInfo.industryIdentifiers.length; i++) {
-//         let ident = item.volumeInfo.industryIdentifiers[i];
-//         if (ident.type == 'ISBN_10' || ident.type == 'ISBN_13') {
-//             return `ISBN:${ident.identifier}`;
-//         }
-//     }
-// }
-// let handleLoadBook = function(event){
-//     let anchor = $(event.currentTarget);
-//     bookID = anchor.attr(dataBookID);
-//     //initialize(bookID);
-//     loadBook();
-//     //let viewerCanvas = $('<div>');
-//     //bookReader.append(viewerCanvas);
-//     //initialize(isbn, alertNotFound);
-// }
-// let loadBook = function(){
-//     // let viewerCanvas = $('#viewerCanvas');
-//     // var viewer = new google.books.DefaultViewer(viewerCanvas);
-//     // let viewerCanvas = $('<div>');
-//     // bookReader.append(viewerCanvas);
-//      var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'), {
-//     //    var viewer = new google.books.DefaultViewer(viewerCanvas, {
-//             showLinkChrome: false
-//     });
-//     viewer.load(bookID, bookNotFound, bookFound);
-// }
+
 let getVolume = function (url) {
 
     fetch(url).then(function (response) {
@@ -128,97 +114,35 @@ let getVolume = function (url) {
     })
         .then(function (response) {
             if (response) {
-                // let list = $('<ul>');
-                // if (!searchResults){
-                //     return;
-                // }
-                // for (var i = 0; i < response.items.length; i++) {
-                //     let item = response.items[i];
-                //     //let searchResult = $('<button>');
-                //     let searchResult = $('<li>');
-                //     let searchResultAnchor = $('<a>');
-                //     searchResultAnchor.attr(dataBookID, getBookID(item));
-                //     searchResultAnchor.attr('href', '#');
-                //     searchResultAnchor.addClass(bookLink);
-                //     searchResultAnchor.text(item.volumeInfo.title);
-                //     searchResult.append(searchResultAnchor);
-                //     // searchResult.addClass('link');
-                //     // searchResult.attr(bookID, getBookID(item));
-                //     // searchResult.text(item.volumeInfo.title);
-                //     list.append(searchResult);
-                //     // for (let j = 0; j < item.volumeInfo.industryIdentifiers.length; j++) {
-                //     //     let ident = item.volumeInfo.industryIdentifiers[j];
-                //     //     // if (ident.type == 'ISBN_10')
-                //     //     if (ident.type == 'ISBN_10' || ident.type == 'ISBN_13') {
-                //     //         let isbn = `ISBN:${ident.identifier}`;
-                //     //         initialize(isbn, alertNotFound);
-                //     //         break;
-                //     //     }
-                //     // }
-                //     // break;
-                //     //console.log(item.volumeInfo.title);
-                // }
-                // searchResults.append(list);
                 sessionStorage.setItem(bookList, JSON.stringify(response.items));
                 window.location.href = readerUrl;
-                // window.location.replace(readerUrl);
             }
         });
 
 }
-// queryBook();
-
-// init google books loader
-//google.books.load();
-// var gbsWidget = document.getElementById('GoogleBooksPreview');
-
-// function bookFound() {
-    
-// }
-// function bookNotFound() {
-// }
-// function initialize1() {
-//     // gbsWidget.className = "";
-//     var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'), {
-//         showLinkChrome: false
-//     });
-//    viewer.load(['ISBN:9780596805524', 'OCLC:502415271'], gbsNotFound, gbsFound);
-// }
 google.books.load();
-// google.load("books", "0");
-// google.books.setOnLoadCallback(loadBook);  
-
-// function initialize(isbn) {
-//     let viewerCanvas = $('#viewerCanvas');
-//     var viewer = new google.books.DefaultViewer(viewerCanvas);
-//     viewer.load(bookID, alertNotFound);
-//     // var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-//     // viewer.load(isbn);
-//   }
-  
-// google.books.setOnLoadCallback(loadBook);
-
-// function initialize(isbn) {
-// }
 
 let handleSearchSubmit = function (event) {
     event.preventDefault();
     queryBook();
 }
 
-//Button to get back to main page
-//document.getElementById("back-button").addEventListener('click', function() {
-//    window.location.href = './index.html';
-//});
+let loadOptions = function () {
+    $.each(categoryList, function (index, value) {
+        let selectItem = $('<option>');
+        selectItem.val(value);
+        selectItem.text(value);
+        selectCategoryEl.append(selectItem);
+    });
 
+    $.each(optionList, function (index, value) {
+        let selectItem = $('<option>');
+        selectItem.val(value);
+        selectItem.text(value);
+        selectOptionEl.append(selectItem);
+    });
+}
+
+// init section
 submitSearchEl.on('click', handleSearchSubmit);
-// searchResults.on('click', '.bookLink', handleLoadBook);
-// google.books.setOnLoadCallback(initialize);
-
-//volumeInfo
-//"https://books.google.com/books/about/The_Gospel_According_to_Mark.html?hl=&id=ca2DsmMDhpEC"
-//"https://www.googleapis.com/books/v1/volumes/ca2DsmMDhpEC"
-
-//"http://books.google.com.au/books/download/The_Gospel_According_to_Mark-sample-epub.acsm?id=ca2DsmMDhpEC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
-// https://www.googleapis.com/books/v1/volumes?q=subject:fiction
-// getVolume(volumeQuery);
+loadOptions();

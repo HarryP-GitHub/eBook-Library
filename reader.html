@@ -7,42 +7,71 @@
   <title>eBook Library</title>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
-  <header>
-    <h1>eBook Library</h1>
+  <header class="hero is-primary">
+    <div class="hero-body center"> 
+      <h1 class="title" style="font-size: 250%;">eBook Library</h1>
+    </div>
   </header>
-  <div class="readerpage-container">
-    <div class="left-container">
-      <button id="back-button">Back to Main Page</button>
-        <!-- Search Results + Map go here-->
-        <div id="results">
-          <h2>Results</h2>
+  <section class="section">
+    <button class="button is-link" id="back-button">Back to Main Page</button>
+    <div class="container">
+      <div class="columns box">
+        <div class="column is-one-quarter" id="results" style="background-color: var(--sstyle); border-radius: 5px;">
+          <h2 class="subtitle mt-4">Results</h2>
           <div id="search-results">
+          <!-- Search Results-->
+          </div>
+          <div class="mt-4" id="map" style="width: 100%; height: 90%; max-height: 45%;">
+            <!-- Map-->
+          </div>
+        </div>
+
+        <div class="column">
+          <!--<div class="reader-page" id="reader-page">-->
+            <div class="box" id="book-reader">
+              <h2 class="subtitle">Reader</h2>
+              <h3 id="book-title" class="subtitle">Example Book Title</h3>
+            <div id="viewerCanvas" style="width:600px; height: 500px"></div>
+            <!--Book here-->
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+ <!-- <div class="readerpage-container">
+    <div class="left-container">
+      <button id="back-button">Back to Main Page</button> -->
+        <!-- Search Results + Map go here-->
+      <!--  <div id="results">
+          <h2>Results</h2>
+          <div id="search-results"> -->
             <!-- Results generate here-->
             <!-- <p>results</p> -->
             <!-- <li>list</li> -->
-          </div>
+      <!--    </div>
         </div>
-        <div id="map" style="width:90%; height: 90%">
+        <div id="map" style="width:90%; height: 90%"> -->
           <!-- Map generates here-->
           <!-- <p>map</p> -->
-        </div>
-    </div>
-    <div class="right-container">
+     <!--   </div>
+    </div>-->
+    <!-- <div class="right-container"> -->
       <!-- Reader goes here-->
-      <div id="reader-page" class="reader-page">
+    <!--  <div id="reader-page" class="reader-page">
         <div class="book-reader" id="book-reader">
           <h2>Reader</h2>
           <h3 id="book-title">Example Book Title</h3> 
-          <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
+          <div id="viewerCanvas" style="width: 600px; height: 500px"></div> -->
             <!-- insert book title in h3-->
             <!-- Book Reader Here -->
-        </div>
+  <!--      </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/reader-script.js"></script>

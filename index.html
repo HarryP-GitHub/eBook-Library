@@ -7,15 +7,44 @@
   <title>eBook Library</title>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
 <body>
-  <header>
-    <h1>eBook Library</h1>
+  <header class="hero is-primary">
+    <div class="hero-body center"> 
+      <h1 class="title" style="font-size: 250%;">eBook Library</h1>
+    </div>
   </header>
-  <div class="container">
-    <div id="main-page" class="main-page">
+  <section class="section">
+   <div class="container">
+    <div class="box">
+      <h2 class="title is-2">Search for Books</h2>
+      <div class="field">
+        <div class="control" id="type-container">
+          <input class="input" id="book-search" type="text" placeholder="Search for Books">
+        </div>
+        </div>
+        <div class="field">
+          <div class="control" id="type-container">
+            <div class="select" style="width: 100%;">
+              <select id="category" style="width: 100%;">
+                <option value="">Choose a Category</option>
+              </select>
+          </div>
+        </div>
+          </div>
+      <div class="control center" id="search-container">
+        <button class="button is-info center" id="submit-search" style="width: 40%;">Search</button>
+      </div>
+
+    </div>
+   </div>
+  </section>
+
+  <!-- <div class="container">
+    <div id="main-page" class="main-page"> 
       <div class="search-section" id="search-section">
         <h2>Search for Books</h2>
         <div id="input-container" id="input-container">
@@ -25,10 +54,10 @@
         <button type="button" id="submit-search">Search</button>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Will probably just do another html page for the reader page -->
     <!-- Just not sure if the music will continue between main page and reader page-->
-  </div>
+  <!-- </div> -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>

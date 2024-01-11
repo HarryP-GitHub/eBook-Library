@@ -1,4 +1,6 @@
 // variables section
+let storedQueries = [];
+let storedQueriesID = 'storedQueries';
 const bookList = 'bookList';
 let readerUrl = './reader.html';
 let dataBookID = 'data-bookID';
@@ -92,6 +94,11 @@ let queryBook = function () {
         searchOption = '';
     }
 
+    if (searchText && !storedQueries.includes(searchText)){
+        storedQueries.push(searchText);
+        localStorage.setItem(storedQueriesID, JSON.stringify(storedQueries));
+    }
+
     if (searchText || subsetQuery) {
         let query = bookQuery;
         if (searchText) {
@@ -127,6 +134,9 @@ let handleSearchSubmit = function (event) {
     queryBook();
 }
 
+let restoreQueries = function(){
+    storedQueries = JSON.parse(localStorage.getItem(storedQueriesID) || "[]");
+}
 let loadOptions = function () {
     $.each(categoryList, function (index, value) {
         let selectItem = $('<option>');
@@ -146,3 +156,4 @@ let loadOptions = function () {
 // init section
 submitSearchEl.on('click', handleSearchSubmit);
 loadOptions();
+restoreQueries();

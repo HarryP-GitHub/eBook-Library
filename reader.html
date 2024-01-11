@@ -13,7 +13,7 @@
 <body>
   <header class="hero is-primary" style="background-color: var(--headerstyle);">
     <div class="hero-body center"> 
-      <h1 class="title" style="font-size: 250%;">eBook Library</h1>
+      <h1 class="title center" style="font-size: 250%;">eBook Library</h1>
     </div>
   </header>
   <section class="section" style="background-color: var(--bodystyle);">
@@ -21,18 +21,18 @@
     <button class="button is-link" id="back-button">Back to Main Page</button>
     </div>
     <div class="container mt-5">
-      <div class="columns box">
+      <div class="columns box" id="left-container">
         <div class="column is-one-quarter" id="results" style="background-color: var(--sectionstyle); border-radius: 5px;">
           <h2 class="subtitle mt-4" style="font-weight: bold;">Results</h2>
           <div id="search-results">
           <!-- Search Results-->
           </div>
-          <div class="mt-5" id="map" style="width: 100%; height: 90%; max-height: 45%;">
+          <div class="mt-5" id="map" style="width: 300px; height: 300px;">
             <!-- Map-->
           </div>
         </div>
 
-        <div class="column">
+        <div class="column" id="right-container">
           <!--<div class="reader-page" id="reader-page">-->
             <div class="box" id="book-reader">
               <h2 class="subtitle" style="font-weight: bold;">Reader</h2>
